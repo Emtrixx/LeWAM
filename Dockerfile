@@ -10,10 +10,12 @@ ENV UV_LINK_MODE=copy UV_COMPILE_BYTECODE=1 PYTHONUNBUFFERED=1 \
     PATH="/app/.venv/bin:$PATH" \
     SDL_VIDEODRIVER=dummy PYGAME_HIDE_SUPPORT_PROMPT=1 \
     LEWAM_DATA_DIR=/data/pusht
-COPY pyproject.toml uv.lock README.md ./
-RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen --no-dev --no-install-project
+COPY pyproject.toml uv.lock ./
+# Docker caches this dependency layer; avoid retaining a second multi-GB wheel cache.
+RUN uv sync --frozen --no-dev --no-install-project --no-cache
+COPY README.md ./
 COPY src ./src
-RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen --no-dev
+RUN uv sync --frozen --no-dev --no-cache
 COPY docker ./docker
 RUN chmod +x /app/docker/entrypoint.sh
 ENTRYPOINT ["/app/docker/entrypoint.sh"]

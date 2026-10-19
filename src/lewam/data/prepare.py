@@ -21,21 +21,10 @@ def write_json(path, value):
 
 
 def cache_path(cfg):
-    identity = {
-        k: cfg[k]
-        for k in (
-            "kind",
-            "repo_id",
-            "revision",
-            "camera",
-            "max_episodes",
-            "state_key",
-            "action_key",
-            "synthetic_episodes",
-            "synthetic_length",
-            "fps",
-        )
-    }
+    # Include future adapter-specific source options too, so adding an environment
+    # or changing its source cannot accidentally reuse another task's raw cache.
+    excluded = {"root", "authenticated", "train_fraction", "split_seed", "frameskip"}
+    identity = {key: value for key, value in cfg.items() if key not in excluded}
     digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()[:12]
     return Path(cfg["root"]).expanduser().resolve() / "prepared" / digest
 

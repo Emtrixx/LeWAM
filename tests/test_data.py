@@ -3,6 +3,7 @@ import pytest
 import torch
 
 from lewam.data import make_datasets
+from lewam.data.prepare import cache_path
 from lewam.distractors import Distractor
 
 
@@ -63,3 +64,8 @@ def test_cache_reloads_identically(config):
     first, _ = make_datasets(config)
     second, _ = make_datasets(config)
     torch.testing.assert_close(first[0]["pixels"], second[0]["pixels"])
+
+
+def test_future_adapter_source_options_are_part_of_cache_identity(tmp_path):
+    source = {"root": str(tmp_path), "kind": "custom", "task": "task-a"}
+    assert cache_path(source) != cache_path(dict(source, task="task-b"))

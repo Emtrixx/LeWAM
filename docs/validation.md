@@ -5,7 +5,7 @@ launch-path behavior; they are not trained-model quality or paper-result claims.
 
 ## Automated checks
 
-- 33 pytest tests pass on the Mac CPU. They cover mode masks, past-action hiding,
+- 34 pytest tests pass on the Mac CPU. They cover mode masks, past-action hiding,
   live encoder-target gradients, loss weights, Euler direction/determinism,
   encoder freezing, SIGReg collapse detection, BF16-input SIGReg loss/backward,
   fixed-batch learnability, full-size parameter count, causal LeWM behavior,
