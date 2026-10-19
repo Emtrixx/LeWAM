@@ -1,5 +1,10 @@
 # Cluster launch and recovery
 
+Allow at least 30 GB free disk for a first AMD64 CUDA image build: downloaded
+wheels, unpacked libraries, installed environment, and exported layers temporarily
+coexist. Build one architecture at a time on a development laptop. The Dockerfile
+does not retain a second wheel cache in the image or in a persistent cache mount.
+
 ## Image and host
 
 Build `docker build --platform linux/amd64 --target runtime -t lewam:gpu .` on

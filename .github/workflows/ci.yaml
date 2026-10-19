@@ -1,5 +1,8 @@
 name: Validate
 on: [push, pull_request]
+concurrency:
+  group: validation-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -20,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Make room for CUDA dependency installation
+        run: sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc
       - uses: docker/setup-buildx-action@v3
       - uses: docker/build-push-action@v6
         with:
