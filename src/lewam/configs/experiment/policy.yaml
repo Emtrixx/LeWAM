@@ -1,0 +1,6 @@
+# @package _global_
+model:
+  kind: policy
+train:
+  mode_weights: {forward: 0.0, backward: 0.0, inverse: 0.0, policy: 1.0}
+  sigreg: {weight: 0.0}

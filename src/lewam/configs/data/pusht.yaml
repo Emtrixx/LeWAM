@@ -1,0 +1,15 @@
+kind: lerobot
+repo_id: lerobot/pusht
+revision: 7628202a2180972f291ba1bc6723834921e72c19
+authenticated: false  # Public datasets do not need (or read) a stored Hugging Face token.
+root: ${oc.env:LEWAM_DATA_DIR,data/pusht}
+camera: observation.image
+state_key: observation.state
+action_key: action
+max_episodes: null
+train_fraction: 0.9
+split_seed: 0
+frameskip: 5
+synthetic_episodes: 12
+synthetic_length: 64
+fps: 10

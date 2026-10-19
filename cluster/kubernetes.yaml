@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: lewam-pusht
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: trainer
+          image: YOUR_REGISTRY/lewam:YOUR_TAG
+          args:
+            - lewam-train
+            - experiment=pusht
+            - hardware=h100
+            - output_dir=/runs/pusht
+            - hydra.run.dir=/runs/pusht
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+              cpu: "8"
+              memory: 32Gi
+            requests:
+              cpu: "4"
+              memory: 16Gi
+          env:
+            - name: WANDB_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: wandb
+                  key: api-key
+          volumeMounts:
+            - {name: data, mountPath: /data}
+            - {name: runs, mountPath: /runs}
+            - {name: shm, mountPath: /dev/shm}
+      volumes:
+        - name: data
+          persistentVolumeClaim: {claimName: lewam-data}
+        - name: runs
+          persistentVolumeClaim: {claimName: lewam-runs}
+        - name: shm
+          emptyDir: {medium: Memory, sizeLimit: 8Gi}

@@ -1,0 +1,4 @@
+backend: pusht
+id: gym_pusht/PushT-v0
+kwargs: {}
+fps: 10

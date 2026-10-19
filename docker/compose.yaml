@@ -1,0 +1,19 @@
+services:
+  train:
+    build:
+      context: ..
+      target: runtime
+    image: lewam:latest
+    gpus: all
+    shm_size: 8gb
+    volumes:
+      - ../data:/data
+      - ../outputs:/runs
+    environment:
+      WANDB_API_KEY: ${WANDB_API_KEY:-}
+    command:
+      - lewam-train
+      - experiment=pusht
+      - hardware=h100
+      - output_dir=/runs/pusht
+      - hydra.run.dir=/runs/pusht

@@ -1,0 +1,6 @@
+kind: clean
+seed: 1729
+dot_radius: 3
+bar_width: 18
+video_path: null
+video_strength: 0.85

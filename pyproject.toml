@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lewam"
+version = "0.1.0"
+description = "A readable, configurable reproduction of LeWAM (arXiv:2610.12407v1)"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "torch>=2.8,<2.9",
+  "numpy>=2,<3",
+  "hydra-core==1.3.2",
+  "huggingface-hub>=0.34,<1",
+  "pyarrow>=19,<22",
+  "av>=14,<17",
+  "pillow>=11,<13",
+  "wandb>=0.21,<0.24",
+  "gym-pusht>=0.1.5,<0.2",
+  "opencv-python-headless==4.11.0.86",
+  "filelock>=3.16,<5",
+  "scikit-learn>=1.6,<2",
+]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1"]
+
+[project.scripts]
+lewam-train = "lewam.cli:train"
+lewam-prepare = "lewam.cli:prepare"
+lewam-eval = "lewam.cli:evaluate"
+lewam-probe = "lewam.cli:probe"
+lewam-check = "lewam.cli:check"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lewam"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: external dataset or simulator checks"]
+
+[tool.uv]
+required-version = ">=0.12.19"
+# gym-pusht only uses cv2's array operations; replace its GUI wheel with the
+# compatible headless provider for Linux training without GUI dependencies.
+# macOS headless wheels can still include Cocoa/SDL video components.
+exclude-dependencies = ["opencv-python"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "UP"]
+

@@ -1,0 +1,3 @@
+defaults:
+  - ds_cem
+solver: mppi

@@ -1,0 +1,21 @@
+# @package _global_
+defaults:
+  - override /model: tiny
+data:
+  max_episodes: 6
+train:
+  epochs: 2
+  max_steps: 12
+  batch_size: 4
+  log_every: 1
+  max_val_batches: 3
+  sigreg: {projections: 64}
+eval:
+  episodes: 2
+  max_steps: 30
+planner:
+  horizon: 2
+  samples: 8
+  iterations: 2
+  elites: 2
+  candidate_batch_size: 8

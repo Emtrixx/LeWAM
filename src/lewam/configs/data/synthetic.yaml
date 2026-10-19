@@ -1,0 +1,5 @@
+defaults:
+  - pusht
+kind: synthetic
+root: data/synthetic
+max_episodes: 8

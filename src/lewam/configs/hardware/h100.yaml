@@ -1,0 +1,6 @@
+device: cuda
+precision: bf16
+workers: 4
+threads: 4
+pin_memory: true
+sync_batchnorm: true

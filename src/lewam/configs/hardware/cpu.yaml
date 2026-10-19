@@ -1,0 +1,6 @@
+device: cpu
+precision: fp32
+workers: 0
+threads: 2
+pin_memory: false
+sync_batchnorm: false

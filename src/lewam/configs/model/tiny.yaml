@@ -1,0 +1,13 @@
+defaults:
+  - paper
+image_size: 56
+encoder_width: 96
+encoder_depth: 2
+encoder_heads: 3
+projector_hidden: 256
+latent_dim: 64
+width: 128
+depth: 2
+heads: 4
+head_dim: 32
+mlp_dim: 256

@@ -1,0 +1,56 @@
+defaults:
+  - model: paper
+  - data: pusht
+  - distractor: lissajous
+  - environment: pusht
+  - planner: ds_cem
+  - hardware: mac
+  - _self_
+  - experiment: smoke
+
+seed: 0
+output_dir: ${hydra:runtime.output_dir}
+resume: null
+init_from: null
+freeze_encoder: false
+train:
+  epochs: 300
+  max_steps: null
+  batch_size: 128  # global batch, divided equally across ranks; no gradient accumulation
+  lr: 0.00005
+  weight_decay: 0.001
+  warmup_fraction: 0.05
+  grad_clip: 1.0
+  log_every: 10
+  save_every: 1
+  validate_every: 1
+  max_val_batches: null
+  random_context: true
+  mode_weights: {forward: 2.0, backward: 1.0, inverse: 1.0, policy: 1.0}
+  sigreg: {weight: 0.36, knots: 17, projections: 1024}
+logging:
+  mode: offline
+  project: lewam
+  entity: null
+  name: null
+  group: null
+eval:
+  checkpoint: null
+  method: policy
+  episodes: 50
+  max_steps: 300
+  goal_lookahead: 25
+  goal_episodes: 5
+  save_video: true
+  video_fps: 10
+  visual_condition: checkpoint
+  probe_alphas: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+  probe_folds: 5
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+  sweep:
+    dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+    subdir: ${hydra.job.num}

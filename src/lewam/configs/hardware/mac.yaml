@@ -1,0 +1,6 @@
+device: mps
+precision: fp32
+workers: 0
+threads: 4
+pin_memory: false
+sync_batchnorm: false
