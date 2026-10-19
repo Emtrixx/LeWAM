@@ -20,6 +20,12 @@ launch-path behavior; they are not trained-model quality or paper-result claims.
   backward-output issue. The script is `tests/distributed_sigreg.py`.
 - Ruff lint and formatting checks pass. Hydra smoke/full/policy/LeWM compositions,
   cluster YAML files, and shell launchers have been checked.
+- The AMD64 Docker test stage passes all 34 tests with the locked CUDA-enabled
+  dependencies. Real public PushT training, checkpoint loading, simulator rollout,
+  and H.264 video encoding also complete inside that image on CPU. The installed
+  runtime reports `2.8.0+cu128` and CUDA `12.8`.
+- The built wheel contains all 22 Hydra YAML configs. A real Hydra multirun over
+  two visual conditions completes with separate output/checkpoint directories.
 
 ## Actual data and model execution
 
@@ -42,6 +48,11 @@ launch-path behavior; they are not trained-model quality or paper-result claims.
 
 Local run artifacts are under `outputs/validation/` and are intentionally ignored
 by Git. Commands, configs, and tests are tracked so checks can be rerun elsewhere.
+The Docker smoke checkpoint and video are under `outputs/container-smoke/` and
+`outputs/container-policy/`. The local `lewam:gpu` tag aliases the tested image,
+which includes test dependencies; build the Dockerfile's `runtime` target for a
+minimal training image on the GPU server. Intermediate images and download/build
+caches were removed after validation to restore local disk space.
 
 ## Hardware limits
 
