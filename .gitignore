@@ -1,0 +1,42 @@
+# macOS and editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Python environments and build products
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Test and lint caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+
+# Downloaded data, generated assets, and training outputs
+/data/
+/datasets/
+/checkpoints/
+/outputs/
+/multirun/
+/wandb/
+/logs/
+/artifacts/
+/tmp/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
