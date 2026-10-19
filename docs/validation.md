@@ -7,7 +7,7 @@ launch-path behavior; they are not trained-model quality or paper-result claims.
 
 - 33 pytest tests pass on the Mac CPU. They cover mode masks, past-action hiding,
   live encoder-target gradients, loss weights, Euler direction/determinism,
-  encoder freezing, SIGReg collapse detection, BF16 autocast loss/backward,
+  encoder freezing, SIGReg collapse detection, BF16-input SIGReg loss/backward,
   fixed-batch learnability, full-size parameter count, causal LeWM behavior,
   episode/action alignment, train-only normalization, distractor determinism,
   foreground preservation, cache identity, planner budgets/bounds/imagined
@@ -48,6 +48,6 @@ by Git. Commands, configs, and tests are tracked so checks can be rerun elsewher
 No H100 or GPU cluster was connected during development. The full global batch
 128, CUDA/BF16 execution, CUDA SyncBatchNorm/NCCL, H100 peak memory/throughput,
 multi-node networking, and site scheduler integration require the documented
-server-side preflight. Mac CPU BF16 autocast and Linux/Gloo tests do not substitute
+server-side preflight. BF16-input SIGReg and Linux/Gloo tests do not substitute
 for those hardware-specific measurements. Full 300-epoch/five-seed training and
 paper success-rate reproduction have not been performed.
