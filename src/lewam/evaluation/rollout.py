@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 
 import numpy as np
@@ -9,6 +10,7 @@ from lewam.environments import make_environment
 from lewam.planning import MPCPlanner
 from lewam.training.logging import RunLogger
 
+from .calibration import recalibrate_batchnorm
 from .common import load_evaluation
 from .video import write_video
 
@@ -57,6 +59,21 @@ def _evaluate_loaded(cfg, model, normalizer, saved, checkpoint, runtime):
         output = Path(saved["output_dir"])
         output.mkdir(parents=True, exist_ok=True)
         logger = RunLogger(output, saved)
+        calibration = None
+        calibration_batches = saved["eval"].get("bn_calibration_batches", 0)
+        if calibration_batches:
+            train, _ = make_datasets(
+                saved, normalizer=normalizer, expected_manifest=checkpoint["manifest"]
+            )
+            calibration = recalibrate_batchnorm(
+                model,
+                train,
+                runtime,
+                saved["train"]["batch_size"],
+                calibration_batches,
+                saved["eval"].get("bn_calibration_seed", 0),
+            )
+            write_json(output / "bn-calibration.json", calibration)
         env = make_environment(saved["environment"], saved["distractor"], model.cfg.image_size)
         method = saved["eval"]["method"]
         if method not in {"policy", "planner"}:
@@ -93,9 +110,12 @@ def _evaluate_loaded(cfg, model, normalizer, saved, checkpoint, runtime):
             history = context.new_zeros(1, 0, model.chunk_dim)
             frames = [env.last_native.copy()]
             success = False
-            coverage = total_reward = seconds = 0.0
+            coverage = terminal_coverage = total_reward = seconds = action_selection_seconds = 0.0
             steps = 0
             while steps < saved["eval"]["max_steps"]:
+                if runtime.device.type == "cuda":
+                    torch.cuda.synchronize(runtime.device)
+                decision_start = time.perf_counter()
                 if planner:
                     normalized, metrics = planner.plan(context, history, bank.retrieve(context))
                     seconds += metrics["seconds"]
@@ -106,12 +126,16 @@ def _evaluate_loaded(cfg, model, normalizer, saved, checkpoint, runtime):
                     model.cfg.chunk_size, model.cfg.action_dim
                 )
                 action = np.clip(action, env.action_low, env.action_high).astype("float32")
+                if runtime.device.type == "cuda":
+                    torch.cuda.synchronize(runtime.device)
+                action_selection_seconds += time.perf_counter() - decision_start
                 done = False
                 for primitive in action:
                     image, done, info = env.step(primitive)
                     steps += 1
                     success |= bool(info.get("is_success", False))
-                    coverage = max(coverage, float(info.get("coverage", 0)))
+                    terminal_coverage = float(info.get("coverage", 0))
+                    coverage = max(coverage, terminal_coverage)
                     total_reward += info["reward"]
                     if saved["eval"]["save_video"]:
                         frames.append(env.last_native.copy())
@@ -133,9 +157,11 @@ def _evaluate_loaded(cfg, model, normalizer, saved, checkpoint, runtime):
                 "seed": seed,
                 "success": success,
                 "max_coverage": coverage,
+                "terminal_coverage": terminal_coverage,
                 "return": total_reward,
                 "steps": steps,
                 "planning_seconds": seconds,
+                "action_selection_seconds": action_selection_seconds,
             }
             results.append(result)
             logger.log({f"eval/{k}": v for k, v in result.items()}, episode)
@@ -148,6 +174,8 @@ def _evaluate_loaded(cfg, model, normalizer, saved, checkpoint, runtime):
             "episodes": results,
             "success_rate": float(np.mean([r["success"] for r in results])),
             "mean_max_coverage": float(np.mean([r["max_coverage"] for r in results])),
+            "mean_terminal_coverage": float(np.mean([r["terminal_coverage"] for r in results])),
+            "bn_calibration": calibration,
             "method": method,
             "visual_condition": saved["distractor"]["kind"],
             "planner": cfg["planner"] if planner else None,

@@ -41,6 +41,8 @@ eval:
   max_steps: 300
   goal_lookahead: 25
   goal_episodes: 5
+  bn_calibration_batches: 0  # Optional adaptation: -1 all full train batches, >0 diagnostic cap.
+  bn_calibration_seed: 0
   save_video: true
   video_fps: 10
   visual_condition: checkpoint
