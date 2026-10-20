@@ -1,0 +1,4 @@
+backend: robomimic
+task: square
+source: ${data}
+fps: 20

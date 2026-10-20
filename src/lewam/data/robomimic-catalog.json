@@ -1,0 +1,88 @@
+{
+  "schema": "lewam-robomimic-source-catalog-v1",
+  "repo_id": "robomimic/robomimic_datasets",
+  "revision": "74fa018461f479cd9fd15b924a16103012096203",
+  "gated": false,
+  "private": false,
+  "files": [
+    {
+      "task": "lift",
+      "simulator_task": "Lift",
+      "path": "v1.5/lift/ph/demo_v15.hdf5",
+      "bytes": 36699586,
+      "sha256": "68f2a8cfe2502de1224f0708fb82e46da07abce108c63e721d72fc1618272f37",
+      "episodes_expected": 200,
+      "action_dim": 7,
+      "paper_camera_semantics": [
+        "agentview"
+      ],
+      "native_resolution": 84,
+      "paper_eval_max_steps": 100
+    },
+    {
+      "task": "can",
+      "simulator_task": "PickPlaceCan",
+      "path": "v1.5/can/ph/demo_v15.hdf5",
+      "bytes": 64932974,
+      "sha256": "86961df85af1b9c6b9d4182a3755a8a4db6d0660cd550e45cca1f7accdb6d73d",
+      "episodes_expected": 200,
+      "action_dim": 7,
+      "paper_camera_semantics": [
+        "agentview"
+      ],
+      "native_resolution": 84,
+      "paper_eval_max_steps": 400
+    },
+    {
+      "task": "square",
+      "simulator_task": "NutAssemblySquare",
+      "path": "v1.5/square/ph/demo_v15.hdf5",
+      "bytes": 68982198,
+      "sha256": "3d9d6cadfa9395c5b368c029582dd73f1d4f699c1d82f78f0875e9bded61e596",
+      "episodes_expected": 200,
+      "action_dim": 7,
+      "paper_camera_semantics": [
+        "agentview"
+      ],
+      "native_resolution": 84,
+      "paper_eval_max_steps": 400
+    },
+    {
+      "task": "tool_hang",
+      "simulator_task": "ToolHang",
+      "path": "v1.5/tool_hang/ph/demo_v15.hdf5",
+      "bytes": 161171288,
+      "sha256": "6b7685edbaee2fa4404421ae8ba9aaeaea618b6304aa031fe55fe007eaa05a13",
+      "episodes_expected": 200,
+      "action_dim": 7,
+      "paper_camera_semantics": [
+        "sideview"
+      ],
+      "native_resolution": 168,
+      "paper_eval_max_steps": 700
+    },
+    {
+      "task": "transport",
+      "simulator_task": "TwoArmTransport",
+      "path": "v1.5/transport/ph/demo_v15.hdf5",
+      "bytes": 225971403,
+      "sha256": "7ab144d2d6d752f3e48f3b030e34ce1567d168955d1c83f88a788364ba811eb4",
+      "episodes_expected": 200,
+      "action_dim": 14,
+      "paper_camera_semantics": [
+        "shouldercamera0",
+        "shouldercamera1"
+      ],
+      "native_resolution": 256,
+      "paper_eval_max_steps": 700
+    }
+  ],
+  "total_raw_bytes": 557757449,
+  "format": "Official raw HDF5 simulator states/actions/XML; pixels must be rendered. Camera names must be verified against actual environment metadata/model; semantic names above are not untested production aliases.",
+  "sources": [
+    "https://arxiv.org/html/2610.12407v1",
+    "https://robomimic.github.io/docs/datasets/robomimic_v0.1.html",
+    "https://huggingface.co/datasets/robomimic/robomimic_datasets"
+  ],
+  "observed_unix": 1792493276.3474183
+}

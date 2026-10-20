@@ -25,6 +25,10 @@ def cache_path(cfg):
     # or changing its source cannot accidentally reuse another task's raw cache.
     excluded = {"root", "authenticated", "train_fraction", "split_seed", "frameskip"}
     identity = {key: value for key, value in cfg.items() if key not in excluded}
+    if cfg["kind"] == "robomimic":
+        from .robomimic import render_identity
+
+        identity["render_identity"] = render_identity()
     digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()[:12]
     return Path(cfg["root"]).expanduser().resolve() / "prepared" / digest
 
@@ -32,6 +36,10 @@ def cache_path(cfg):
 def prepare_dataset(cfg):
     from filelock import FileLock
 
+    if cfg["kind"] == "robomimic":
+        from .robomimic import verified_source
+
+        verified_source(cfg)  # Rehash even when using an already prepared cache.
     destination = cache_path(cfg)
     destination.mkdir(parents=True, exist_ok=True)
     with FileLock(str(destination / ".prepare.lock")):
@@ -211,6 +219,15 @@ def prepare_lerobot(cfg, destination):
 
 
 _PREPARERS = {"lerobot": prepare_lerobot, "synthetic": prepare_synthetic}
+
+
+def _prepare_robomimic(cfg, destination):
+    from .robomimic import prepare_robomimic
+
+    return prepare_robomimic(cfg, destination)
+
+
+_PREPARERS["robomimic"] = _prepare_robomimic
 
 
 def register_preparer(name, preparer):

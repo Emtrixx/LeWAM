@@ -1,0 +1,4 @@
+backend: robomimic
+task: lift
+source: ${data}
+fps: 20

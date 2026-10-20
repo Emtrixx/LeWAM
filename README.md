@@ -97,6 +97,12 @@ same `output_dir` and `hydra.run.dir` on every rank.
 ## Experiments and baselines
 
 Hydra composes model, data, distractor, environment, planner, and hardware groups.
+
+Lift, Can, Square, ToolHang and Transport are also available through
+`experiment=lift`, `can`, `square`, `tool_hang` and `transport`. Use the separate
+pinned simulator runtime and official PH200 datasets described in
+[the Robomimic setup](docs/robomimic.md). The adapters have bounded real-data CPU
+validation; their GPU experiments and paper-equivalent qualification remain open.
 The configs ship **inside the Python package** at `src/lewam/configs`, so installed
 wheels and Docker images use the same definitions.
 

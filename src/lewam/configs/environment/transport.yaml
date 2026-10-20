@@ -1,0 +1,4 @@
+backend: robomimic
+task: transport
+source: ${data}
+fps: 20

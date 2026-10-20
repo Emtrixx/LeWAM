@@ -22,6 +22,8 @@ def load_evaluation(cfg):
     )
     # Relocate data without changing its identity, e.g. when moving a checkpoint to a cluster.
     saved["data"]["root"] = cfg["data"]["root"]
+    if saved["environment"]["backend"] == "robomimic":
+        saved["environment"]["source"] = deepcopy(saved["data"])
     condition = cfg["eval"]["visual_condition"]
     if condition != "checkpoint":
         if condition not in {"clean", "lissajous", "video"}:

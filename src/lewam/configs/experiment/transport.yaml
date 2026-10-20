@@ -1,0 +1,13 @@
+# @package _global_
+defaults:
+  - override /model: paper
+  - override /data: transport
+  - override /environment: transport
+  - override /distractor: sim_boxes
+model:
+  action_dim: 14
+eval:
+  max_steps: 700
+  video_fps: 20
+distractor:
+  centers: [[-0.22, -0.5, 1.0], [0.22, 0.5, 1.0]]

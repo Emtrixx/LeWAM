@@ -65,6 +65,15 @@ class GymAdapter:
 _FACTORIES = {"pusht": GymAdapter, "gymnasium": GymAdapter}
 
 
+def _robomimic(cfg, distractor_cfg, image_size):
+    from .robomimic import RobomimicAdapter
+
+    return RobomimicAdapter(cfg, distractor_cfg, image_size)
+
+
+_FACTORIES["robomimic"] = _robomimic
+
+
 def register_environment(name, factory):
     """Register an adapter implementing PixelEnvironment; no trainer changes required."""
     if name in _FACTORIES:

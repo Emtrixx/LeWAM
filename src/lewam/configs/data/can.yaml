@@ -1,0 +1,11 @@
+kind: robomimic
+task: can
+repo_id: robomimic/robomimic_datasets
+revision: 74fa018461f479cd9fd15b924a16103012096203
+root: ${oc.env:LEWAM_ROBOMIMIC_DIR,data/robomimic}
+max_episodes: null
+max_frames: null
+train_fraction: 0.9
+split_seed: 0
+frameskip: 5
+render: ${distractor}

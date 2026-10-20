@@ -40,7 +40,14 @@ class WindowDataset(Dataset):
         self.image_size = model_cfg["image_size"]
         self.context = model_cfg["context_frames"]
         self.chunk = model_cfg["chunk_size"]
-        self.distractor = Distractor(distractor_cfg)
+        if manifest["kind"] == "robomimic":
+            from lewam.distractors.boxes import SimBoxes
+
+            if manifest["render"] != distractor_cfg:
+                raise ValueError("Prepared and requested physical distractor recipes differ")
+            self.distractor = SimBoxes(distractor_cfg)
+        else:
+            self.distractor = Distractor(distractor_cfg)
         self.normalizer = normalizer
         self.records = {ep["id"]: ep for ep in manifest["episodes"]}
         self.arrays = {}
@@ -112,6 +119,19 @@ def make_datasets(cfg, output_dir=None, normalizer=None, expected_manifest=None)
     if float(manifest["fps"]) != float(cfg["environment"]["fps"]):
         raise ValueError("Dataset and environment frame rates disagree")
     if expected_manifest is not None:
+        if manifest["kind"] == "robomimic":
+            for key in (
+                "raw_sha256",
+                "task",
+                "render",
+                "render_identity",
+                "env_args",
+                "native_resolution",
+                "composition",
+                "partial",
+            ):
+                if manifest[key] != expected_manifest[key]:
+                    raise ValueError(f"Checkpoint dataset {key} differs from prepared data")
         for key in ("kind", "revision", "camera"):
             if manifest[key] != expected_manifest[key]:
                 raise ValueError(f"Checkpoint dataset {key} differs from prepared data")

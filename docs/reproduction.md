@@ -85,6 +85,44 @@ Changing one of these choices is a config/code experiment and must be named in
 reports. Mac smoke runs deliberately change scale, data size, precision, SIGReg
 projection count, and planner budget; they establish plumbing, not paper metrics.
 
+## Robomimic extension: explicit fidelity limits
+
+The five adapters use the official PH200 raw v1.5 HDF5 files pinned in
+`src/lewam/data/robomimic-catalog.json`. These contain simulator states, actions
+and episode XML, not the paper's augmented pixels. See [the executable contract
+and runtime recipe](robomimic.md). Every frame is rendered from its corresponding
+raw state, with the original action and episode order retained. Transport's two
+native shoulder images are stacked vertically before the sole encoder resize.
+Vertical stacking is an interpretation of the paper's unspecified stacking axis.
+
+Two grey, noncolliding MuJoCo mocap boxes are rendered by the same recipe offline
+and online. Their sizes, placement, sinusoidal motion, phase seeds and Transport
+placement are explicit assumptions in `distractor/sim_boxes.yaml` and its task
+override. Their relationship to each task object's size is not paper-validated.
+They are physical scene geometry, with occlusion and perspective, rather than
+2D overlays. These data qualify as **an adapted physical-box condition**, never
+paper-equivalent augmented data. No proprietary augmentation was obtained.
+
+The native success predicate is robosuite's `_check_success()`. Lift uses the
+paper's 100-step horizon despite the official registry's longer horizon. These
+adapters use 20 Hz metadata and seven OSC pose/gripper actions per arm; Transport
+has fourteen. The optimization recipe, episode split and train-only normalizer
+are unchanged. Simulator state is retained for diagnostics only; model inputs
+remain pixels and actions. Raw simulator coordinates are not relabelled as the
+paper's semantic end-effector/object probe targets.
+
+The bounded CPU checks show exact direct-state replay/cache alignment, online
+reset/step, successful recorded final states and matching offline/online camera
+poses for every task. They do not establish exact integrated demonstration
+replay. The inspected Can first-step raw-state discrepancy includes qpos about
+0.030 and qvel about 0.784 on unused Milk geometry; the Can joint also differs
+(qpos about 0.000486, qvel about 0.233). The physical-box and undecorated native
+simulators agree on that same action to numerical precision. The cause of the
+recorded-versus-integrated mismatch is unresolved; paper-equivalent simulator
+qualification remains blocked. The other tasks have smaller nonzero integrated
+raw-state discrepancies recorded in the preparation evidence. This does not
+change the direct raw-state pixel replay into an integrated-action replay claim.
+
 ## Framework decision
 
 [stable-worldmodel](https://github.com/galilai-group/stable-worldmodel) provides

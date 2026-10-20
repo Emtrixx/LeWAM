@@ -1,0 +1,4 @@
+backend: robomimic
+task: tool_hang
+source: ${data}
+fps: 20
