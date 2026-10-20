@@ -68,7 +68,11 @@ _FACTORIES = {"pusht": GymAdapter, "gymnasium": GymAdapter}
 def _robomimic(cfg, distractor_cfg, image_size):
     from .robomimic import RobomimicAdapter
 
-    return RobomimicAdapter(cfg, distractor_cfg, image_size)
+    env = RobomimicAdapter(cfg, distractor_cfg, image_size)
+    # Match the model's action interface; float64 clamp bounds promote BF16/FP32 actions.
+    env.action_low = np.asarray(env.action_low, dtype=np.float32)
+    env.action_high = np.asarray(env.action_high, dtype=np.float32)
+    return env
 
 
 _FACTORIES["robomimic"] = _robomimic
