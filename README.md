@@ -1,7 +1,13 @@
-# LeWAM
+# LeWAM — unofficial implementation
 
-A faithful, extensible reproduction of **LeWAM: A JEPA World Action Model with
-Diffusion-Steering-Based MPC** ([arXiv:2610.12407v1](https://arxiv.org/abs/2610.12407v1)).
+An **unofficial, independently developed implementation** of
+**LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC**
+([arXiv:2610.12407v1](https://arxiv.org/abs/2610.12407v1)).
+
+Credit for the LeWAM method and original research belongs to **Shashank Hegde,
+Alexander Popov, Elie Aljalbout, and Nikolai Smolyanskiy**. This repository is
+independently maintained; implementation choices, extensions and reproduction
+results are documented separately from the original paper.
 
 The reference paper is included at [docs/LeWAM_2610.12407v1.pdf](docs/LeWAM_2610.12407v1.pdf).
 
@@ -191,3 +197,24 @@ All these directories are under `src/lewam`. See [architecture.md](docs/architec
 for data shapes and extension points, and [validation.md](docs/validation.md) for
 what has actually been exercised. OGBench, CarRacing-v3, ViZDoom, and MiniWorld
 are future adapters, not installed dependencies or claimed supported benchmarks.
+
+
+## Original paper and citation
+
+If you use the LeWAM method in your research, please cite the original paper:
+
+```bibtex
+@misc{hegde2026lewam,
+  title         = {LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC},
+  author        = {Shashank Hegde and Alexander Popov and Elie Aljalbout and Nikolai Smolyanskiy},
+  year          = {2026},
+  eprint        = {2610.12407},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  doi           = {10.48550/arXiv.2610.12407},
+  url           = {https://arxiv.org/abs/2610.12407}
+}
+```
+
+When referring to this code, identify it as this unofficial implementation and
+link to this repository alongside the paper citation.

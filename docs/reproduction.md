@@ -1,5 +1,9 @@
 # Reproduction contract and assumptions
 
+This is an **unofficial, independently maintained implementation**. The original
+LeWAM research is by Shashank Hegde, Alexander Popov, Elie Aljalbout and Nikolai
+Smolyanskiy; see the [paper credit and citation](../README.md#original-paper-and-citation).
+
 The target is [arXiv:2610.12407v1](https://arxiv.org/abs/2610.12407v1), the NVIDIA
 paper by Hegde et al., included in this directory. There are other unrelated
 papers named LeWAM. This code targets the four-mode JEPA/flow model in this PDF.
