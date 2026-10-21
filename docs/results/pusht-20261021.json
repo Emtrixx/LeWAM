@@ -1,0 +1,551 @@
+{
+  "schema": "lewam-pusht-research-summary-v1",
+  "date": "2026-10-21",
+  "training_commit": "7a60273a56f5c413f7f5c7ef49d0e35aed2b79a1",
+  "evaluation_commit": "c074699ebe32f74c53cb1587d532ab6761069a6b",
+  "contract": {
+    "training_epochs": 300,
+    "training_updates": 47400,
+    "full_validation_passes": 300,
+    "episodes_per_arm_per_model": 50,
+    "evaluation_starts": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "max_primitive_steps": 300,
+    "visual_condition": "lissajous",
+    "success": "maximum raw coverage > 0.95",
+    "stopping_targets": {
+      "policy_mean_max_raw_coverage": 0.71,
+      "planner_mean_max_raw_coverage": 0.7
+    }
+  },
+  "original_study": {
+    "training_seeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "selection_sha256": "856ff0dcc7132736b4940035e438c39d22e6d6af3cf95efdf0b50586998dfd10",
+    "selected_methods": {
+      "policy": {
+        "arm": "control-policy",
+        "target_raw_max": 0.71,
+        "mean_max_raw_coverage": 0.7321068045848725,
+        "trained_seed_sample_SD_max_coverage": 0.0380209208468707,
+        "trained_seed_range_max_coverage": [
+          0.6979763774542954,
+          0.7857291245174203
+        ],
+        "mean_terminal_raw_coverage": 0.6947566875924152,
+        "mean_success_rate": 0.42,
+        "mean_max_normalized_reward": 0.7668702156478258,
+        "numerical_threshold_met": true
+      },
+      "planner": {
+        "arm": "candidate-planner",
+        "target_raw_max": 0.7,
+        "mean_max_raw_coverage": 0.735267048150625,
+        "trained_seed_sample_SD_max_coverage": 0.0420075798880537,
+        "trained_seed_range_max_coverage": [
+          0.6833528173804156,
+          0.7980179897771398
+        ],
+        "mean_terminal_raw_coverage": 0.6971454754723191,
+        "mean_success_rate": 0.464,
+        "mean_max_normalized_reward": 0.7690287884812251,
+        "numerical_threshold_met": true
+      }
+    },
+    "all_arms": {
+      "control-policy": {
+        "mean_max_raw_coverage": 0.7321068045848725,
+        "trained_seed_sample_SD_max_coverage": 0.0380209208468707,
+        "trained_seed_range_max_coverage": [
+          0.6979763774542954,
+          0.7857291245174203
+        ],
+        "mean_terminal_raw_coverage": 0.6947566875924152,
+        "mean_success_rate": 0.42,
+        "mean_max_normalized_reward": 0.7668702156478258
+      },
+      "candidate-policy": {
+        "mean_max_raw_coverage": 0.7245598444085565,
+        "trained_seed_sample_SD_max_coverage": 0.06836309131575281,
+        "trained_seed_range_max_coverage": [
+          0.6408316180063457,
+          0.8115973880162851
+        ],
+        "mean_terminal_raw_coverage": 0.6773683289956476,
+        "mean_success_rate": 0.4,
+        "mean_max_normalized_reward": 0.7588930523632913
+      },
+      "control-planner": {
+        "mean_max_raw_coverage": 0.7485725520085403,
+        "trained_seed_sample_SD_max_coverage": 0.021049220376133472,
+        "trained_seed_range_max_coverage": [
+          0.7200983888884372,
+          0.7768620676844261
+        ],
+        "mean_terminal_raw_coverage": 0.7138003214947463,
+        "mean_success_rate": 0.428,
+        "mean_max_normalized_reward": 0.7841844223630684
+      },
+      "candidate-planner": {
+        "mean_max_raw_coverage": 0.735267048150625,
+        "trained_seed_sample_SD_max_coverage": 0.0420075798880537,
+        "trained_seed_range_max_coverage": [
+          0.6833528173804156,
+          0.7980179897771398
+        ],
+        "mean_terminal_raw_coverage": 0.6971454754723191,
+        "mean_success_rate": 0.464,
+        "mean_max_normalized_reward": 0.7690287884812251
+      }
+    },
+    "per_seed": [
+      {
+        "training_seed": 1,
+        "declared_checkpoint_sha256": "a57a5ff8187b58cdd649886739b78630232de91b8c8ee59296c0e210bc4c74d1",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.7857291245174203,
+            "mean_terminal_raw_coverage": 0.7586203106605837,
+            "success_rate": 0.5,
+            "mean_max_normalized_reward": 0.8239818208915577,
+            "evaluation_sha256": "0a16556dae47ac9efb1ba46cc7f8500f3455aae585dc0d24cea957217326e886"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.6408316180063457,
+            "mean_terminal_raw_coverage": 0.5887604672807764,
+            "success_rate": 0.28,
+            "mean_max_normalized_reward": 0.6713791086358237,
+            "evaluation_sha256": "2c053ce80932b2ad7646799dd47101cf91ddb43ed65ea6dbce3481b455ef294b"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.756120603763778,
+            "mean_terminal_raw_coverage": 0.7213293887193745,
+            "success_rate": 0.46,
+            "mean_max_normalized_reward": 0.7901454831383916,
+            "evaluation_sha256": "e4c5e784b9cadf28be6d5471b3cdb9c87d196cc11f385be157838e4d4f8705f6"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.7446669800571738,
+            "mean_terminal_raw_coverage": 0.7195184987448434,
+            "success_rate": 0.6,
+            "mean_max_normalized_reward": 0.7774098116110818,
+            "evaluation_sha256": "4b3435ccd80d480b0a152c77a7dff7308e889a26d5a8ee51a0789c2147e0b189"
+          }
+        }
+      },
+      {
+        "training_seed": 2,
+        "declared_checkpoint_sha256": "9bc871b7c0235c5cf59a2764c4856c3f9702d040f2c98effbdb70d914ba67afe",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.7165520624612935,
+            "mean_terminal_raw_coverage": 0.7034144319612816,
+            "success_rate": 0.4,
+            "mean_max_normalized_reward": 0.74957882789461,
+            "evaluation_sha256": "e055348ef99ae31e9805aa3cdf5dad4b9404c85beb99e346565aa27ed307112a"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.6889742808549211,
+            "mean_terminal_raw_coverage": 0.6344372897788093,
+            "success_rate": 0.3,
+            "mean_max_normalized_reward": 0.7229809888738782,
+            "evaluation_sha256": "05955534d478dcc3fe87a75ef835184f70e64bd425638caa19bdbcffa46c8400"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.7200983888884372,
+            "mean_terminal_raw_coverage": 0.7069245267034744,
+            "success_rate": 0.28,
+            "mean_max_normalized_reward": 0.7558568729294634,
+            "evaluation_sha256": "d133bfb6458ca0bc2a920d3fe63eb3584732cf13383cf7cd986579d22f00b237"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.6833528173804156,
+            "mean_terminal_raw_coverage": 0.6574412879265403,
+            "success_rate": 0.32,
+            "mean_max_normalized_reward": 0.7167381684098014,
+            "evaluation_sha256": "8ef2e3620ae2d05d87609b7b2a98673e2b8033429ce83baf1e48ceda29a88cd8"
+          }
+        }
+      },
+      {
+        "training_seed": 3,
+        "declared_checkpoint_sha256": "35add2b391e8d3e216b8207f878eb866349d3d593f338712c93f7fda05a6f3ef",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.7028213676319348,
+            "mean_terminal_raw_coverage": 0.6681528642300376,
+            "success_rate": 0.4,
+            "mean_max_normalized_reward": 0.7363155397016452,
+            "evaluation_sha256": "686d01f2180907c2cad9527e9e1061e86a56bc96441470661606a0f092da20f6"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.7066326718209116,
+            "mean_terminal_raw_coverage": 0.6735169028560883,
+            "success_rate": 0.36,
+            "mean_max_normalized_reward": 0.7415351594280939,
+            "evaluation_sha256": "c3f11e52e1dfd1ec2d637fe30b28d7f2d26b802f470f0411f4e8bfc5a82e907a"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.7386811355124916,
+            "mean_terminal_raw_coverage": 0.7062938899566485,
+            "success_rate": 0.42,
+            "mean_max_normalized_reward": 0.773603080949766,
+            "evaluation_sha256": "ad6725d72a4b515a9580ad053fd3497389c71c3b5c1e278c13f3c460be5341c0"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.717004419993155,
+            "mean_terminal_raw_coverage": 0.6963368673022124,
+            "success_rate": 0.4,
+            "mean_max_normalized_reward": 0.7504671192884331,
+            "evaluation_sha256": "d8bbd0787240c4e9cc86ee8d2133b6333820a1321a8249c4c366741aecde9b93"
+          }
+        }
+      },
+      {
+        "training_seed": 4,
+        "declared_checkpoint_sha256": "1de73dee98acd1602c6b45e4de6d0b5b1319aeda7cf9269988dde16fc0191245",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.7574550908594189,
+            "mean_terminal_raw_coverage": 0.7141185479772985,
+            "success_rate": 0.44,
+            "mean_max_normalized_reward": 0.7933898160848819,
+            "evaluation_sha256": "1a85ffe44e13cb4d1c7aa9fb19578736770115ae7fe5e9c6b935429803152cd8"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.8115973880162851,
+            "mean_terminal_raw_coverage": 0.7736882345502726,
+            "success_rate": 0.56,
+            "mean_max_normalized_reward": 0.8489622733988554,
+            "evaluation_sha256": "88c62c7df801854747db52a94bcb22b661b8aa4e7818f22ded96556e1292d72e"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.7768620676844261,
+            "mean_terminal_raw_coverage": 0.7249531379358211,
+            "success_rate": 0.46,
+            "mean_max_normalized_reward": 0.8145193800437972,
+            "evaluation_sha256": "db190967ea05275db9fd7446e1a250c148c0b9260cad6e859e5e7adfa8996323"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.733293033545241,
+            "mean_terminal_raw_coverage": 0.6565697534207896,
+            "success_rate": 0.38,
+            "mean_max_normalized_reward": 0.767574277653436,
+            "evaluation_sha256": "990ce5970e41152925598ced71ed3ef23e58c7c5796fe1049d9ea1a7e87403c8"
+          }
+        }
+      },
+      {
+        "training_seed": 5,
+        "declared_checkpoint_sha256": "f5e933cba1ad6cfd157308ab95b0aad6d109d46b4677b110b3a4fe4011af98a4",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.6979763774542954,
+            "mean_terminal_raw_coverage": 0.6294772831328744,
+            "success_rate": 0.36,
+            "mean_max_normalized_reward": 0.7310850736664342,
+            "evaluation_sha256": "e4d31b4f67ea617fa560ae2742c4d2470b1516c18d51b44ea885d6670d62f407"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.7747632633443189,
+            "mean_terminal_raw_coverage": 0.7164387505122916,
+            "success_rate": 0.5,
+            "mean_max_normalized_reward": 0.8096077314798052,
+            "evaluation_sha256": "d924818ef75f45d41450e69fd8ead642b095fbd73ad2f614b0e7b2c3bbc9aa77"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.7511005641935689,
+            "mean_terminal_raw_coverage": 0.7095006641584131,
+            "success_rate": 0.52,
+            "mean_max_normalized_reward": 0.786797294753924,
+            "evaluation_sha256": "eaee4e0cd9511e31c882e823b1ac8a62f2bccf025950c4f738ce96fa2afe58b8"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.7980179897771398,
+            "mean_terminal_raw_coverage": 0.7558609699672095,
+            "success_rate": 0.62,
+            "mean_max_normalized_reward": 0.8329545654433733,
+            "evaluation_sha256": "8fa31444014551bbdb2ac72bb0f26c024b03cd2a0a47ded94af0f48208ddd921"
+          }
+        }
+      }
+    ],
+    "numerical_summary_sha256": "2333017eb8a3043901c581b2ac583492f3b2c3476809de8251374c4de5f52c51"
+  },
+  "BN_both_study": {
+    "training_seeds": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "development_seeds_excluded": [
+      0,
+      5
+    ],
+    "selection_sha256": "d6e198b17be2d7bba8159e71fef6212622bacee2558478d17602e0780939c7c1",
+    "selected_methods": {
+      "policy": {
+        "arm": "candidate-policy",
+        "target_raw_max": 0.71,
+        "mean_max_raw_coverage": 0.7119743134471077,
+        "trained_model_sample_SD": 0.062336975333162674,
+        "mean_terminal_raw_coverage": 0.6653437370120313,
+        "mean_binary_success": 0.372,
+        "numerical_threshold_met": true
+      },
+      "planner": {
+        "arm": "candidate-planner",
+        "target_raw_max": 0.7,
+        "mean_max_raw_coverage": 0.7267044235557295,
+        "trained_model_sample_SD": 0.028070403942705276,
+        "mean_terminal_raw_coverage": 0.6943606693060321,
+        "mean_binary_success": 0.432,
+        "numerical_threshold_met": true
+      }
+    },
+    "per_model": [
+      {
+        "training_seed": 1,
+        "checkpoint_sha256": "a57a5ff8187b58cdd649886739b78630232de91b8c8ee59296c0e210bc4c74d1",
+        "producer_audit_sha256": "1065adf48d66b6f572c82b259002d351e2316d3999d21589290de1635f62e373",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.7857291245174203,
+            "mean_terminal_raw_coverage": 0.7586203106605837,
+            "success_rate": 0.5,
+            "mean_max_normalized_reward": 0.8239818208915577,
+            "evaluation_sha256": "0a16556dae47ac9efb1ba46cc7f8500f3455aae585dc0d24cea957217326e886"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.6408316180063457,
+            "mean_terminal_raw_coverage": 0.5887604672807764,
+            "success_rate": 0.28,
+            "mean_max_normalized_reward": 0.6713791086358237,
+            "evaluation_sha256": "2c053ce80932b2ad7646799dd47101cf91ddb43ed65ea6dbce3481b455ef294b"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.756120603763778,
+            "mean_terminal_raw_coverage": 0.7213293887193745,
+            "success_rate": 0.46,
+            "mean_max_normalized_reward": 0.7901454831383916,
+            "evaluation_sha256": "e4c5e784b9cadf28be6d5471b3cdb9c87d196cc11f385be157838e4d4f8705f6"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.7446669800571738,
+            "mean_terminal_raw_coverage": 0.7195184987448434,
+            "success_rate": 0.6,
+            "mean_max_normalized_reward": 0.7774098116110818,
+            "evaluation_sha256": "4b3435ccd80d480b0a152c77a7dff7308e889a26d5a8ee51a0789c2147e0b189"
+          }
+        }
+      },
+      {
+        "training_seed": 2,
+        "checkpoint_sha256": "9bc871b7c0235c5cf59a2764c4856c3f9702d040f2c98effbdb70d914ba67afe",
+        "producer_audit_sha256": "3d6c32e86ecb6233b5550a965aabb06f18fd787169ad1dc2758706ff28ea1c55",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.7165520624612935,
+            "mean_terminal_raw_coverage": 0.7034144319612816,
+            "success_rate": 0.4,
+            "mean_max_normalized_reward": 0.74957882789461,
+            "evaluation_sha256": "e055348ef99ae31e9805aa3cdf5dad4b9404c85beb99e346565aa27ed307112a"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.6889742808549211,
+            "mean_terminal_raw_coverage": 0.6344372897788093,
+            "success_rate": 0.3,
+            "mean_max_normalized_reward": 0.7229809888738782,
+            "evaluation_sha256": "05955534d478dcc3fe87a75ef835184f70e64bd425638caa19bdbcffa46c8400"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.7200983888884372,
+            "mean_terminal_raw_coverage": 0.7069245267034744,
+            "success_rate": 0.28,
+            "mean_max_normalized_reward": 0.7558568729294634,
+            "evaluation_sha256": "d133bfb6458ca0bc2a920d3fe63eb3584732cf13383cf7cd986579d22f00b237"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.6833528173804156,
+            "mean_terminal_raw_coverage": 0.6574412879265403,
+            "success_rate": 0.32,
+            "mean_max_normalized_reward": 0.7167381684098014,
+            "evaluation_sha256": "8ef2e3620ae2d05d87609b7b2a98673e2b8033429ce83baf1e48ceda29a88cd8"
+          }
+        }
+      },
+      {
+        "training_seed": 3,
+        "checkpoint_sha256": "35add2b391e8d3e216b8207f878eb866349d3d593f338712c93f7fda05a6f3ef",
+        "producer_audit_sha256": "9a21b9594d4ffc8ae7e77742c7a202a87caa3235d07810110c1462e3d271c409",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.7028213676319348,
+            "mean_terminal_raw_coverage": 0.6681528642300376,
+            "success_rate": 0.4,
+            "mean_max_normalized_reward": 0.7363155397016452,
+            "evaluation_sha256": "686d01f2180907c2cad9527e9e1061e86a56bc96441470661606a0f092da20f6"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.7066326718209116,
+            "mean_terminal_raw_coverage": 0.6735169028560883,
+            "success_rate": 0.36,
+            "mean_max_normalized_reward": 0.7415351594280939,
+            "evaluation_sha256": "c3f11e52e1dfd1ec2d637fe30b28d7f2d26b802f470f0411f4e8bfc5a82e907a"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.7386811355124916,
+            "mean_terminal_raw_coverage": 0.7062938899566485,
+            "success_rate": 0.42,
+            "mean_max_normalized_reward": 0.773603080949766,
+            "evaluation_sha256": "ad6725d72a4b515a9580ad053fd3497389c71c3b5c1e278c13f3c460be5341c0"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.717004419993155,
+            "mean_terminal_raw_coverage": 0.6963368673022124,
+            "success_rate": 0.4,
+            "mean_max_normalized_reward": 0.7504671192884331,
+            "evaluation_sha256": "d8bbd0787240c4e9cc86ee8d2133b6333820a1321a8249c4c366741aecde9b93"
+          }
+        }
+      },
+      {
+        "training_seed": 4,
+        "checkpoint_sha256": "1de73dee98acd1602c6b45e4de6d0b5b1319aeda7cf9269988dde16fc0191245",
+        "producer_audit_sha256": "00218870f944dcdd104067fc28ac3c4f0361bef84d8e67d4c7db7450a650cb00",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.7574550908594189,
+            "mean_terminal_raw_coverage": 0.7141185479772985,
+            "success_rate": 0.44,
+            "mean_max_normalized_reward": 0.7933898160848819,
+            "evaluation_sha256": "1a85ffe44e13cb4d1c7aa9fb19578736770115ae7fe5e9c6b935429803152cd8"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.8115973880162851,
+            "mean_terminal_raw_coverage": 0.7736882345502726,
+            "success_rate": 0.56,
+            "mean_max_normalized_reward": 0.8489622733988554,
+            "evaluation_sha256": "88c62c7df801854747db52a94bcb22b661b8aa4e7818f22ded96556e1292d72e"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.7768620676844261,
+            "mean_terminal_raw_coverage": 0.7249531379358211,
+            "success_rate": 0.46,
+            "mean_max_normalized_reward": 0.8145193800437972,
+            "evaluation_sha256": "db190967ea05275db9fd7446e1a250c148c0b9260cad6e859e5e7adfa8996323"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.733293033545241,
+            "mean_terminal_raw_coverage": 0.6565697534207896,
+            "success_rate": 0.38,
+            "mean_max_normalized_reward": 0.767574277653436,
+            "evaluation_sha256": "990ce5970e41152925598ced71ed3ef23e58c7c5796fe1049d9ea1a7e87403c8"
+          }
+        }
+      },
+      {
+        "training_seed": 6,
+        "checkpoint_sha256": "8ca1f3f836bc6ad07d054858c5c1d5d188e4b1ab98cb4959fea18d529ab911b6",
+        "producer_audit_sha256": "ea581b5724d82b67cbcec0bd3cdbbe2610100acf13eae3a41fac815d9c652449",
+        "arms": {
+          "control-policy": {
+            "mean_max_raw_coverage": 0.7592194062555677,
+            "mean_terminal_raw_coverage": 0.738698707111758,
+            "success_rate": 0.42,
+            "mean_max_normalized_reward": 0.7941200100155463,
+            "evaluation_sha256": "e6e3f396ceb0466ef52db67d76711b77ea20a1dbcc9935b659b72fea1d3fd2f6"
+          },
+          "candidate-policy": {
+            "mean_max_raw_coverage": 0.711835608537075,
+            "mean_terminal_raw_coverage": 0.6563157905942097,
+            "success_rate": 0.36,
+            "mean_max_normalized_reward": 0.7461771649591272,
+            "evaluation_sha256": "0df0930ef9921a1aa4a2fee8b16c88eedb49a225a5d4233211ecc2ad4086bc08"
+          },
+          "control-planner": {
+            "mean_max_raw_coverage": 0.7441792278129147,
+            "mean_terminal_raw_coverage": 0.7296468232175365,
+            "success_rate": 0.36,
+            "mean_max_normalized_reward": 0.7804495558358931,
+            "evaluation_sha256": "01b278009fbab1e9ba7409d0805418a12840a83b58ae6ca43ffb936f91936729"
+          },
+          "candidate-planner": {
+            "mean_max_raw_coverage": 0.7552048668026623,
+            "mean_terminal_raw_coverage": 0.7419369391357747,
+            "success_rate": 0.46,
+            "mean_max_normalized_reward": 0.7907214308559232,
+            "evaluation_sha256": "f508ea0614c71676972ba1fdd9db07a65b3a6949790b2089d84ea98f0b200b3c"
+          }
+        }
+      }
+    ],
+    "numerical_summary_sha256": "0ee82606aaf74470ada96c7eb0950c0c6968af3e24bc778f0091d28f23cc1571",
+    "overlap_disclosure": "New study shares four trained models/complete four-arm files with the original first study. Do not call these two independent five-model experiments or ten new models. Internally the new confirmation has five distinct independently trained models1,2,3,4,6, none used to choose this new condition. Same50fixed starts remain dependent across models, as in the accepted protocol."
+  },
+  "verification": "Six full producer science and durable closeouts passed independent audits, including complete checkpoints, validation, source/runtime/data and1200playablevideos. Repeated cost reconciliation added zero. Raw checkpoints/videos remain in research archives, not in this repository.",
+  "limitations": [
+    "Five trained models per study; shared fixed starts are dependent across models.",
+    "Four models are shared by the studies; they are not independent replications.",
+    "Exact paper raw/normalized and maximum/terminal aggregation parity remains unresolved.",
+    "BatchNorm recalibration did not consistently improve paired raw maximum coverage.",
+    "Historical LeWM benchmarks use a different task/action/horizon contract and are not a matched ranking."
+  ]
+}

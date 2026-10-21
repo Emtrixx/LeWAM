@@ -5,6 +5,10 @@ Diffusion-Steering-Based MPC** ([arXiv:2610.12407v1](https://arxiv.org/abs/2610.
 
 The reference paper is included at [docs/LeWAM_2610.12407v1.pdf](docs/LeWAM_2610.12407v1.pdf).
 
+The completed five-seed PushT study reached **73.21% policy / 73.53% DS-CEM**
+mean maximum raw coverage. See [research results and limitations](docs/research-results.md)
+for the fixed evaluation contract, all inference arms and paper-comparison caveats.
+
 ## Start on the Mac
 
 Python 3.12 and [uv](https://docs.astral.sh/uv/) are required. From the repository root:
@@ -148,6 +152,22 @@ logging, planner, output directory, and evaluation settings come from the comman
 The training visual condition is retained unless explicitly changed through
 `eval.visual_condition=clean|lissajous|video`. Goal retrieval uses designated
 **training** demonstrations; simulator state never enters the model.
+
+Optional train-only BatchNorm recalibration is disabled by default. To evaluate
+it explicitly on a final checkpoint:
+
+```bash
+uv run lewam-eval experiment=pusht eval.checkpoint=outputs/pusht/last.pt \
+  eval.method=planner planner=ds_cem eval.bn_calibration_batches=-1 \
+  eval.bn_calibration_seed=0 output_dir=outputs/pusht-planner-calibrated
+```
+
+`-1` uses all complete training batches; a positive count limits a diagnostic run.
+Calibration updates only in-memory BN running statistics, restores RNG state and
+leaves the saved checkpoint unchanged. Evaluation records the calibration split
+and order, maximum and terminal coverage, binary success and action-selection time.
+The five-seed study found mixed calibration effects; it is not a recommended
+universal performance improvement.
 
 Ridge probes use episode-grouped cross-validation, held-out episodes, and a
 shuffled-target control. The public LeRobot PushT data contains agent position,

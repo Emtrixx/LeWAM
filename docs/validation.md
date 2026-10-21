@@ -54,7 +54,7 @@ which includes test dependencies; build the Dockerfile's `runtime` target for a
 minimal training image on the GPU server. Intermediate images and download/build
 caches were removed after validation to restore local disk space.
 
-## Hardware limits
+## Hardware limits at initial development (19 October 2026)
 
 No H100 or GPU cluster was connected during development. The full global batch
 128, CUDA/BF16 execution, CUDA SyncBatchNorm/NCCL, H100 peak memory/throughput,
@@ -62,3 +62,21 @@ multi-node networking, and site scheduler integration require the documented
 server-side preflight. BF16-input SIGReg and Linux/Gloo tests do not substitute
 for those hardware-specific measurements. Full 300-epoch/five-seed training and
 paper success-rate reproduction have not been performed.
+
+
+## Subsequent research validation — 21 October 2026
+
+The initial hardware limitations above describe the original development record.
+Subsequent actual A100/H100 work completed six full PushT training runs with
+B128/BF16, exact complete saved-state restoration checks, native policy and
+DS-CEM evaluation, complete checkpoints and all 300 full validations per run.
+The two prospectively selected five-model studies meet the agreed local coverage
+targets. See [research results](research-results.md) for metrics, overlap, negative
+calibration results and remaining paper-equivalence limitations. This does not
+establish full Robomimic training success or multi-node/NCCL qualification.
+
+Integration checks on 21 October: **47 pytest tests passed**, including all five
+pinned PH200 real-data replay/native simulator cases and the Lift/Transport CPU
+BF16 DS-CEM action-bound regressions. These used the isolated CPU runtime with
+Mesa EGL software rendering. Ruff lint and formatting checks also passed. The
+simulator emitted three upstream deprecation warnings.
